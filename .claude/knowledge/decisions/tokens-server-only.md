@@ -1,9 +1,10 @@
 ---
 title: Twitch token / service key อยู่ฝั่ง server เท่านั้น
 area: decisions
-scope: backend
+scope: core
+platform: none
 sources:
-  - .claude/PROJECT_CONCEPT.md
+  - PROJECT_CONCEPT.md
 updated: 2026-11-08
 ---
 
@@ -17,11 +18,11 @@ Chat ใช้ `tmi.js` แบบ anonymous จึงไม่ต้องมี
 และ token ไปไม่ถึง OBS อยู่ดี ([[config-in-db-not-url]]). ย้ายไป server + refresh token แก้ทั้งสองอย่าง.
 
 ## Where it shows up
-- `.claude/PROJECT_CONCEPT.md:121-126` — `provider_tokens` + เหตุผล RLS ไม่มี policy
-- `.claude/PROJECT_CONCEPT.md:140` — service key ห้ามขึ้น client
-- `.claude/PROJECT_CONCEPT.md:196` — บทเรียนต้นทาง
+- `PROJECT_CONCEPT.md:121-126` — `provider_tokens` + เหตุผล RLS ไม่มี policy
+- `PROJECT_CONCEPT.md:140` — service key ห้ามขึ้น client
+- `PROJECT_CONCEPT.md:196` — บทเรียนต้นทาง
 
 ## Gotchas
 - "RLS on + ไม่มี policy" คือ deny-all ตั้งใจ — อย่าเพิ่ม policy เพื่อ "ให้ใช้งานได้"
 - ใน Nuxt ค่าใต้ `runtimeConfig.public` ขึ้น client — service key ต้องอยู่ private เท่านั้น
-- EventSub / YouTube ต้องมี process รันค้าง → serverless route ไม่พอ ต้องมี worker แยก (`.claude/PROJECT_CONCEPT.md:148`)
+- EventSub / YouTube ต้องมี process รันค้าง → serverless route ไม่พอ ต้องมี worker แยก (`PROJECT_CONCEPT.md:148`)

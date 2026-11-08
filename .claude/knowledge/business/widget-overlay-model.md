@@ -1,9 +1,10 @@
 ---
 title: คำศัพท์ — widget, editor, overlay, preview, alert
 area: business
-scope: both
+scope: core
+platform: none
 sources:
-  - .claude/PROJECT_CONCEPT.md
+  - PROJECT_CONCEPT.md
 updated: 2026-11-08
 ---
 
@@ -18,12 +19,12 @@ updated: 2026-11-08
   follow มาทาง EventSub ฝั่ง server เท่านั้น ที่เหลือมาจาก IRC ได้
 
 ## Why
-ผู้ใช้เป้าหมายคือสตรีมเมอร์ทั่วไป ไม่ใช่เจ้าของโปรเจคคนเดียว (`.claude/PROJECT_CONCEPT.md:13`)
+ผู้ใช้เป้าหมายคือสตรีมเมอร์ทั่วไป ไม่ใช่เจ้าของโปรเจคคนเดียว (`PROJECT_CONCEPT.md:13`)
 → เหตุที่ต้องมีบัญชี, RLS, และ preview ที่ใช้ได้โดยไม่ต้องไลฟ์
 
 ## Gotchas
 - Preview กับ overlay ควรใช้ component render ตัวเดียวกัน ต่างแค่แหล่ง feed (mock vs `ChatSource`)
   ไม่งั้น preview ไม่ตรงของจริง
-- `ChatSource` interface มีไว้เผื่อ YouTube (`.claude/PROJECT_CONCEPT.md:181-188`) — อย่าให้ component เรียก tmi.js ตรง
+- `ChatSource` interface มีไว้เผื่อ YouTube (`PROJECT_CONCEPT.md:184-188`) — อย่าให้ component เรียก tmi.js ตรง
 
 Related: [[config-in-db-not-url]], [[theme-css-variables]]

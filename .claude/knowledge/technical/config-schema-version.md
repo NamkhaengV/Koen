@@ -1,9 +1,10 @@
 ---
 title: schema_version + migrateConfig — overlay ที่แปะใน OBS อยู่ตลอดไป
 area: technical
-scope: both
+scope: core
+platform: none
 sources:
-  - .claude/PROJECT_CONCEPT.md
+  - PROJECT_CONCEPT.md
 updated: 2026-11-08
 ---
 
@@ -16,9 +17,9 @@ updated: 2026-11-08
 Config เก่าใน DB ต้อง render ได้กับโค้ดใหม่เสมอ ไม่งั้นสตรีมของเขาพังกลางไลฟ์.
 
 ## Where it shows up
-- `.claude/PROJECT_CONCEPT.md:117` — column
-- `.claude/PROJECT_CONCEPT.md:98` — RPC คืน `schema_version` ให้ overlay
-- `.claude/PROJECT_CONCEPT.md:156` — กฎ migrate
+- `PROJECT_CONCEPT.md:117` — column
+- `PROJECT_CONCEPT.md:98` — RPC คืน `schema_version` ให้ overlay
+- `PROJECT_CONCEPT.md:156` — กฎ migrate
 
 ## Gotchas
 - jsonb ไม่บังคับ schema — field ใหม่ต้องมี default ฝั่งโค้ด ห้ามสมมติว่ามีค่า

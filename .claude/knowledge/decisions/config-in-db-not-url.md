@@ -1,9 +1,10 @@
 ---
 title: Config อยู่ใน DB ผูกกับ UUID — ห้ามเก็บใน URL หรือ localStorage
 area: decisions
-scope: both
+scope: core
+platform: none
 sources:
-  - .claude/PROJECT_CONCEPT.md
+  - PROJECT_CONCEPT.md
 updated: 2026-11-08
 ---
 
@@ -19,9 +20,9 @@ Overlay URL มีแค่ `/overlay/<widget>/<uuid>`. Config ทุกค่�
 3. ลิงก์คงที่ = realtime update ได้ — แก้ใน editor แล้ว OBS เปลี่ยนตามโดยไม่ต้องแปะลิงก์ใหม่
 
 ## Where it shows up
-- `.claude/PROJECT_CONCEPT.md:70-71` — กฎ config ใน DB / รูปเป็น URL
-- `.claude/PROJECT_CONCEPT.md:194-195` — บทเรียนต้นทาง
-- `.claude/PROJECT_CONCEPT.md:155` — localStorage ใช้ได้ **เฉพาะฝั่ง dashboard** (badge "มีอัปเดตใหม่") เพราะเปิดใน browser ปกติ
+- `PROJECT_CONCEPT.md:70-71` — กฎ config ใน DB / รูปเป็น URL
+- `PROJECT_CONCEPT.md:194-195` — บทเรียนต้นทาง
+- `PROJECT_CONCEPT.md:155` — localStorage ใช้ได้ **เฉพาะฝั่ง dashboard** (badge "มีอัปเดตใหม่") เพราะเปิดใน browser ปกติ
 
 ## Gotchas
 - อะไรที่ overlay ต้องใช้ ห้ามพึ่ง localStorage/cookie — ทดสอบใน Chrome ผ่าน แต่ใน OBS พัง

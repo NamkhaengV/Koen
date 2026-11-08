@@ -1,9 +1,10 @@
 ---
 title: Overlay อ่าน config แบบไม่ login — ผ่าน RPC + Broadcast เท่านั้น
 area: decisions
-scope: backend
+scope: core
+platform: none
 sources:
-  - .claude/PROJECT_CONCEPT.md
+  - PROJECT_CONCEPT.md
 updated: 2026-11-08
 ---
 
@@ -20,10 +21,10 @@ OBS ไม่ได้ login จึงใช้ anon key. Overlay โหลด c
 ## Where it shows up
 - `supabase/migrations/20261108144316_init_schema.sql` — RLS, grants, RPC
 - `app/pages/overlay/chat/[id].vue` — overlay เรียก RPC
-- `.claude/PROJECT_CONCEPT.md:96-99` — กฎการเข้าถึง
+- `PROJECT_CONCEPT.md:96-99` — กฎการเข้าถึง
 
 ## Gotchas
-- **Concept doc ขัดกันเอง**: diagram หัวข้อ 5 (`.claude/PROJECT_CONCEPT.md:61`) เขียน `Realtime (UPDATE)`
+- **Concept doc ขัดกันเอง**: diagram หัวข้อ 5 (`PROJECT_CONCEPT.md:61`) เขียน `Realtime (UPDATE)`
   ชวนให้เข้าใจว่าใช้ Postgres Changes. ตัวที่ตัดสินแล้วคือ Broadcast (บรรทัด 84, 99)
 - Broadcast ไม่ persist — overlay ที่หลุด connection ช่วง editor save จะพลาด event.
   ควร refetch ผ่าน RPC ตอน reconnect (ข้อสรุปจาก design นี้ ยังไม่ได้เขียนใน doc)
@@ -33,8 +34,8 @@ OBS ไม่ได้ login จึงใช้ anon key. Overlay โหลด c
   revoke execute จาก `anon, authenticated` เพราะ Supabase grant ให้อัตโนมัติ (migration `lock_trigger_functions`)
 - Broadcast channel ยังไม่ได้ตัดสิน: public channel = ใครรู้ id ส่ง config ปลอมเข้า overlay ได้.
   ทางที่ปลอดภัยกว่าคือ private channel + RLS บน `realtime.messages` (owner ส่ง, anon รับ) — ตัดสินใน Phase 1
-- Bucket `widget-assets` เป็น public read (`.claude/PROJECT_CONCEPT.md:85`) — รูปที่อัปโหลดเปิดได้ทุกคนที่รู้ URL
-- Supabase free tier pause project ถ้าไม่มีใช้งาน ~1 สัปดาห์ (`.claude/PROJECT_CONCEPT.md:145`)
+- Bucket `widget-assets` เป็น public read (`PROJECT_CONCEPT.md:85`) — รูปที่อัปโหลดเปิดได้ทุกคนที่รู้ URL
+- Supabase free tier pause project ถ้าไม่มีใช้งาน ~1 สัปดาห์ (`PROJECT_CONCEPT.md:145`)
   → overlay ของ **ผู้ใช้ทุกคน** โหลด config ไม่ได้พร้อมกัน
 
 Related: [[config-in-db-not-url]], [[tokens-server-only]]
