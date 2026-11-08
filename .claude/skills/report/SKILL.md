@@ -1,7 +1,7 @@
 ---
 name: report
-description: Write a git commit title/description (/report git) or a Discord work report in Markdown (/report discord or /report dc) from the current changes. Use when the user runs /report, or asks for a commit message or a work report/update for Discord.
-argument-hint: "git [feat|fix|update|refactor|style|perf|docs|test|chore] | discord | dc | ex  [th|en] [ex]  [ช่วงเวลา หรือ note]"
+description: Show a git commit message (/report git), show a Discord work report in Markdown (/report discord or /report dc), or write the message and actually commit (/report commit). Use when the user runs /report, or asks for a commit message, to commit their changes, or for a work report/update for Discord.
+argument-hint: "git | commit | discord | dc  [feat|fix|update|refactor|style|perf|docs|test|chore] [th|en] [ช่วงเวลา หรือ note]"
 ---
 
 # /report — commit message & Discord work report
@@ -9,42 +9,32 @@ argument-hint: "git [feat|fix|update|refactor|style|perf|docs|test|chore] | disc
 Usage:
 
 ```
-/report git                    → commit title + description (ภาษาไทย)
-/report discord   (or dc)      → Discord work report (ภาษาไทย)
+/report git                    → แสดง commit title + description (ไม่ commit)
+/report discord   (or dc)      → แสดง Discord work report
+/report commit                 → เขียน commit message แล้ว commit ขึ้น git เลย
 /report dc since monday        → report covering a period
 /report git feat               → force commit type Feat
-/report git fix login bug      → type Fix + hint "login bug"
-/report git refactor chat      → type Refactor + hint "chat"
-/report git feat en            → commit in English
+/report commit fix login bug   → commit with type Fix + hint "login bug"
+/report git feat en            → commit message in English
 /report dc en                  → Discord report in English
-/report git ex                 → preview the commit message only — do NOT commit
-/report ex                     → same as /report git ex
 ```
 
-**`/report git` commits for real.** Add `ex` / `example` anywhere to preview without
-committing (see *Committing* below).
+**Only `/report commit` changes the repository.** `git` and `discord` just display text —
+no `git add`, no `git commit`.
 
 Arguments: $ARGUMENTS
 
-## Pick the output from the first argument
+## Pick the action from the first argument
 
-| First argument (case-insensitive) | Output | Audience |
+| First argument (case-insensitive) | Action | Touches the repo? |
 |---|---|---|
-| `git`, `commit` | **Commit** (title + description) — see *Commit format* | developers reading `git log` |
-| `discord`, `dc` | **Discord report** (Markdown) — see *Discord report format* | team / PM / client |
-| `ex`, `example` (alone or first) | **Commit preview** — same as `git ex` | developers |
-| empty or anything else | ask in one line: `git` หรือ `discord`? | |
+| `git` | **Show** a commit message — see *Commit format* | no |
+| `discord`, `dc` | **Show** a Discord report — see *Discord report format* | no |
+| `commit` | Write the commit message, then **commit** — see *Committing* | yes |
+| empty or anything else | ask in one line: `git`, `commit` หรือ `discord`? | — |
 
-## Preview flag
-
-Any argument equal to `ex` or `example` (case-insensitive) is a flag and is removed from the
-hint. It only matters for `git`:
-
-| Command | What happens |
-|---|---|
-| `/report git …` | write the message **and run the commit** |
-| `/report git … ex` / `/report ex …` | write the message and show it — **no** `git add`, **no** `git commit` |
-| `/report dc … ex` | same as without the flag — a Discord report never commits anything |
+For `git`, after the message add a short list of the files it covers and one closing line:
+`ใช้ /report commit เพื่อ commit จริง`.
 
 ## Language
 
@@ -67,7 +57,7 @@ Thai output = Thai sentence structure with those English terms embedded, the way
 already writes ("ปรับ Card Form ให้ scroll เฉพาะในส่วนของ card"). Do not translate technical
 terms into Thai words nobody uses.
 
-For `git`, if the **second** argument is a commit type, it sets the type of the title and is
+For `git` and `commit`, any argument that is a commit type sets the type of the title and is
 removed from the hint:
 
 | Argument | Title type | Use for |
@@ -89,12 +79,12 @@ removed from the hint:
 - For `refactor`, `style`, `chore`, `docs`, `test` the change *is* the non-feature work, so
   rule 2 (main features only) is relaxed: describe that work, still briefly.
 
-Everything else after the first argument (minus the type, language, and `ex` flag, if any) is a hint: a time range (`today`, `since monday`,
+Everything else after the first argument (minus the type and language, if any) is a hint: a time range (`today`, `since monday`,
 `2026-11-01..2026-11-08`) or the user's own notes about what to emphasise. Use it to pick the
 commit range and to name modules, but every bullet still has to be backed by the diff.
 
 Defaults when no range is given:
-- `git` → uncommitted changes (`git diff HEAD`); if there are none, the staged changes; if
+- `git` / `commit` → uncommitted changes (`git diff HEAD`); if there are none, the staged changes; if
   still none, say there is nothing to commit.
 - `discord` → today's commits by the current git user (`git log --since=midnight
   --author="$(git config user.name)"`) plus any uncommitted work.
@@ -200,7 +190,7 @@ Feat: Chatroom
 - chatroom follow UI
 ```
 
-## Committing (`git` without `ex`)
+## Committing (`/report commit` only)
 
 Only after the message is written and checked.
 
@@ -231,10 +221,6 @@ Only after the message is written and checked.
    reformatted files, re-stage those same files once and commit again; otherwise stop.
 5. **Report back** in two lines: short hash + title (`git log -1 --pretty="%h %s"`) and the
    file count (`git show --stat --oneline -1 | tail -1`). Do not repeat the full message.
-
-With `ex`: skip all of the above. Show the message in a code block, list the files it would
-include (staged files, or everything `git add -A` would pick up minus the exclusions), and end
-with one line: `ใช้ /report git เพื่อ commit จริง`.
 
 ## Discord report format
 
@@ -291,6 +277,6 @@ Rules:
 - [ ] no refactor/lint/rename noise
 - [ ] commit: no line starts with `#`, title ≤ 72 chars, type matches the argument or the diff
 - [ ] language = the argument, or Thai if none; technical terms left in English
-- [ ] `ex` present → nothing staged or committed; absent → committed, no secrets staged, not pushed
+- [ ] `git` / `discord` → nothing staged or committed; `commit` → committed, no secrets staged, not pushed
 - [ ] report: no empty or duplicated section, inside a ```markdown block
 - [ ] nothing listed that is not in the diff or the user's description

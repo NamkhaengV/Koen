@@ -1,5 +1,5 @@
 ---
-name: learn-overlay-toolkit
+name: learn
 description: Extract durable knowledge for the OBS Overlay Toolkit project into .claude/knowledge/ — from this repo, the legacy Twitch Overlay repo, PROJECT_CONCEPT.md, changelog entries, and past Claude Code transcripts. Use instead of learn-default in this project whenever asked to "learn" a module or tool, document how something works, capture a decision, or refresh the knowledge base after a release.
 ---
 
