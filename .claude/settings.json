@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const p=require\\('./package.json'\\);console.log\\(p.dependencies,p.devDependencies\\)\")",
+      "Bash(echo \"grep exit $?\")",
+      "Bash(pnpm exec *)",
+      "Bash(echo \"eslint $?\")",
+      "Bash(echo \"stylelint $?\")",
+      "Bash(curl -s -o /dev/null -w \"dev server: %{http_code}\\\\n\" http://localhost:3000/)",
+      "Bash(grep -o 'bg-red-100[^{]*{[^}]*}' /tmp/main.css | head -3)",
+      "Read(//tmp/**)",
+      "Bash(grep -o '.\\\\{0,10\\\\}red-100.\\\\{0,80\\\\}' /tmp/main.css | head -5)"
+    ]
+  }
+}

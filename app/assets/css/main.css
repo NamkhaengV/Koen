@@ -1,0 +1,67 @@
+/*
+ * Light theme — primary: Light Sky Blue (#87cefa)
+ *
+ * #87cefa is too light for white text (contrast ~1.7:1). Put dark text on it
+ * (--color-on-primary), and use --color-primary-strong for links/text on white.
+ */
+@import "tailwindcss";
+
+:root {
+    color-scheme: light;
+
+    /* Primary */
+    --color-primary: #87cefa;
+    --color-primary-hover: #6bbcf0;
+    --color-primary-active: #4fadea;
+    --color-primary-soft: #e3f3fe;   /* tinted backgrounds, selected rows */
+    --color-primary-strong: #1b6a9c; /* links / text on white, 5.9:1 */
+    --color-on-primary: #0b2a3d;     /* text on primary, 8.7:1 */
+
+    /* Surfaces */
+    --color-bg: #f7fbfe;
+    --color-surface: #ffffff;
+    --color-surface-muted: #eef6fc;
+    --color-border: #d6e6f2;
+
+    /* Text */
+    --color-text: #0f2533;
+    --color-text-muted: #5a7184;     /* 5.1:1 on white */
+
+    /* Status */
+    --color-success: #2e9d6a;
+    --color-warning: #c98a00;
+    --color-danger: #d64545;
+
+    /* Shape & type */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 1px 2px rgb(15 37 51 / 0.06);
+    --shadow-md: 0 4px 12px rgb(15 37 51 / 0.08);
+    --font-sans: "Krub", ui-sans-serif, system-ui, sans-serif;
+    --focus-ring: 0 0 0 3px rgb(135 206 250 / 0.6);
+}
+
+/*
+ * No background on html/body: OBS overlay pages must stay transparent.
+ * Apply var(--color-bg) in the site/dashboard layout instead.
+ */
+body {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: var(--color-text);
+}
+
+a {
+    color: var(--color-primary-strong);
+}
+
+:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+::selection {
+    background: var(--color-primary-soft);
+    color: var(--color-on-primary);
+}

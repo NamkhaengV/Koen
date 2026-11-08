@@ -1,0 +1,35 @@
+{
+  "name": "obs-overlay-toolkit",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint . && stylelint \"**/*.{vue,css}\"",
+    "lint:fix": "eslint . --fix && stylelint \"**/*.{vue,css}\" --fix"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "nuxt": "^4.6.4",
+    "tailwindcss": "^4.3.5",
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.17.0",
+    "@stylistic/stylelint-plugin": "^6.0.1",
+    "eslint": "^10.14.0",
+    "postcss-html": "^2.0.0",
+    "stylelint": "^18.0.0",
+    "stylelint-config-recommended-vue": "^2.0.0",
+    "typescript": "~6.0.3"
+  }
+}
