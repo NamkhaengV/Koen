@@ -1,5 +1,5 @@
 {
-  "name": "obs-overlay-toolkit",
+  "name": "koen-stream-overlay",
   "type": "module",
   "private": true,
   "scripts": {

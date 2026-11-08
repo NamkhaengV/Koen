@@ -1,9 +1,9 @@
 ---
 name: learn
-description: Extract durable knowledge for the OBS Overlay Toolkit project into .claude/knowledge/ — from this repo, the legacy Twitch Overlay repo, PROJECT_CONCEPT.md, changelog entries, and past Claude Code transcripts. Use instead of learn-default in this project whenever asked to "learn" a module or tool, document how something works, capture a decision, or refresh the knowledge base after a release.
+description: Extract durable knowledge for the Koen - Stream Overlay project into .claude/knowledge/ — from this repo, the legacy Twitch Overlay repo, PROJECT_CONCEPT.md, changelog entries, and past Claude Code transcripts. Use instead of learn-default in this project whenever asked to "learn" a module or tool, document how something works, capture a decision, or refresh the knowledge base after a release.
 ---
 
-# Learn — OBS Overlay Toolkit knowledge base
+# Learn — Koen - Stream Overlay knowledge base
 
 Turn code, history, the concept doc, and conversations into durable notes under
 `.claude/knowledge/`.

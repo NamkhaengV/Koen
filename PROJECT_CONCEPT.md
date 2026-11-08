@@ -1,4 +1,4 @@
-# OBS Overlay Tool — Project Concept
+# Koen - Stream Overlay — Project Concept
 
 เว็บไซต์รวมเครื่องมือ **OBS Browser Source Overlay** สำหรับสตรีมเมอร์
 ผู้ใช้ตั้งค่า widget บนเว็บ → ได้ลิงก์ → นำไปวางใน OBS (Browser Source) ได้ทันที
