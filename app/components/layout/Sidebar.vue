@@ -9,7 +9,17 @@ const isOpen = defineModel<boolean>('open', { default: true });
                  isOpen ? 'w-64' : 'w-0',
         ]"
     >
-        SIDEBAR
+        <section name="title">
+
+        </section>
+
+        <section name="menu">
+
+        </section>
+
+        <section name="detail">
+
+        </section>
     </aside>
 </template>
 
