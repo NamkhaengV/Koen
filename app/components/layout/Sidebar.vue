@@ -7,14 +7,14 @@ const isOpen = defineModel<boolean>('open', { default: true });
 <template>
     <aside
         v-show="isOpen"
-        :class="['h-dvh p-4 flex flex-col gap-12 border-r border-gray-200',
-                 isOpen ? 'w-64' : 'w-0',
+        :class="['h-dvh p-4 flex flex-col gap-12',
+                 isOpen ? 'w-74' : 'w-0',
         ]"
     >
         <section name="title">
             <div class="flex items-baseline gap-2">
-                <h1 class="text-xl font-semibold">レイヱン</h1>
-                <span>Widget</span>
+                <h1 class="text-3xl font-semibold">ガーデン</h1>
+                <span class="font-sans">Widget</span>
             </div>
         </section>
 
@@ -47,5 +47,7 @@ const isOpen = defineModel<boolean>('open', { default: true });
 </template>
 
 <style scoped>
-
+* {
+    color: white;
+}
 </style>

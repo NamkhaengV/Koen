@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="flex flex-col gap-5">
+    <div class="flex flex-col gap-5 over">
         <div class="py-4">
             ← PAGE HEADER
         </div>
@@ -12,7 +12,7 @@
             <div class="flex flex-col gap-2">
                 CHAT PREVIEW
 
-                <div class="min-h-[calc(100dvh-26rem)]  max-h-[calc(100dvh-26rem)] p-4 rounded-xl bg-gray-200">
+                <div class="min-h-[calc(100dvh-26rem)]  max-h-[calc(100dvh-26rem)] p-4 rounded-xl transparent-grid">
                     PREVIEW HERE
                 </div>
 
@@ -23,9 +23,9 @@
                 </div>
             </div>
 
-            <div class="max-h-[calc(100dvh-6.5rem)] flex flex-col gap-4 overflow-auto custom-scroll">
+            <div class="max-h-[calc(100dvh-8.5rem)] flex flex-col gap-4 overflow-auto custom-scroll">
                 <div
-                    v-for="card in 10"
+                    v-for="card in 12"
                     :key="card"
                     class="p-4 flex flex-col gap-2 border rounded-xl"
                 >
@@ -43,6 +43,16 @@
     </div>
 </template>
 
-<style>
-
+<style scoped>
+/* Checkerboard pattern that shows transparency, like an image editor */
+.transparent-grid {
+    background-color: #fff;
+    background-image:
+        linear-gradient(45deg, #e5e7eb 25%, transparent 25%),
+        linear-gradient(-45deg, #e5e7eb 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #e5e7eb 75%),
+        linear-gradient(-45deg, transparent 75%, #e5e7eb 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+}
 </style>
